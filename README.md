@@ -1,9 +1,4 @@
-# doom-emacs-private
+# v.doom.d
 
-My private module for [doom-emacs](https://github.com/hlissner/doom-emacs).
+A fork of @hlissner's [private module](https://github.com/hlissner/doom-emacs-private) for the excellent [doom-emacs](https://github.com/hlissner/doom-emacs).
 
-## Install
-
-``` sh
-git clone https://github.com/hlissner/doom-emacs-private ~/.config/doom
-```
