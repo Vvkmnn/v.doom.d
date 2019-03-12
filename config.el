@@ -26,18 +26,25 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
-
+;; v
 (setq-default
  user-full-name    "Vivek Menon"
  user-mail-address "mail@vvkmnn.xyz")
 
+;; List
+(add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
+
+;; macOS
 (when (eq system-type 'darwin)
   (setq ns-use-thin-smoothing t)
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (add-hook 'window-setup-hook #'toggle-frame-maximized))
 
+;; python3 FIXME install pyenv 
+;; https://github.com/hlissner/doom-emacs/issues/212
+(setq python-shell-interpreter "python3"
+      flycheck-python-pycompile-executable "python3")
 
 ;; NOTE Review upstream 
 
