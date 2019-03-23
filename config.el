@@ -31,6 +31,9 @@
  user-full-name    "Vivek Menon"
  user-mail-address "mail@vvkmnn.xyz")
 
+;; Theme
+(setq doom-theme 'doom-city-lights)
+
 ;; List
 (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
 
@@ -82,54 +85,54 @@
 ;          +modeline-height 25)))
 
 
-; ;;
-; ;; Keybinds
+;;
+;; Keybinds
 
-; (map! :m "M-j" '+default:multi-next-line
-;       :m "M-k" '+default:multi-previous-line
+(map! :m "M-j" '+default:multi-next-line
+      :m "M-k" '+default:multi-previous-line
 
-;       ;; Easier window movement
-;       :n "C-h" 'evil-window-left
-;       :n "C-j" 'evil-window-down
-;       :n "C-k" 'evil-window-up
-;       :n "C-l" 'evil-window-right
+      ;; Easier window movement
+      :n "C-h" 'evil-window-left
+      :n "C-j" 'evil-window-down
+      :n "C-k" 'evil-window-up
+      :n "C-l" 'evil-window-right
 
-;       (:map evil-treemacs-state-map
-;         "C-h" 'evil-window-left
-;         "C-l" 'evil-window-right)
+      (:map evil-treemacs-state-map
+        "C-h" 'evil-window-left
+        "C-l" 'evil-window-right))
 
-;       (:when IS-LINUX
-;         "s-x" #'execute-extended-command
-;         "s-;" #'eval-expression
-;         ;; use super for window/frame navigation/manipulation
-;         "s-w" #'delete-window
-;         "s-W" #'delete-frame
-;         "s-n" #'+default/new-buffer
-;         "s-N" #'make-frame
-;         "s-q" (if (daemonp) #'delete-frame #'evil-quit-all)
-;         ;; Restore OS undo, save, copy, & paste keys (without cua-mode, because
-;         ;; it imposes some other functionality and overhead we don't need)
-;         "s-z" #'undo
-;         "s-c" (if (featurep 'evil) #'evil-yank #'copy-region-as-kill)
-;         "s-v" #'yank
-;         "s-s" #'save-buffer
-;         ;; Buffer-local font scaling
-;         "s-+" (λ! (text-scale-set 0))
-;         "s-=" #'text-scale-increase
-;         "s--" #'text-scale-decrease
-;         ;; Conventional text-editing keys
-;         "s-a" #'mark-whole-buffer
-;         :gi [s-return]    #'+default/newline-below
-;         :gi [s-S-return]  #'+default/newline-above
-;         :gi [s-backspace] #'doom/backward-kill-to-bol-and-indent)
+      ; (:when IS-LINUX
+      ;   "s-x" #'execute-extended-command
+      ;   "s-;" #'eval-expression
+      ;   ;; use super for window/frame navigation/manipulation
+      ;   "s-w" #'delete-window
+      ;   "s-W" #'delete-frame
+      ;   "s-n" #'+default/new-buffer
+      ;   "s-N" #'make-frame
+      ;   "s-q" (if (daemonp) #'delete-frame #'evil-quit-all)
+      ;   ;; Restore OS undo, save, copy, & paste keys (without cua-mode, because
+      ;   ;; it imposes some other functionality and overhead we don't need)
+      ;   "s-z" #'undo
+      ;   "s-c" (if (featurep 'evil) #'evil-yank #'copy-region-as-kill)
+      ;   "s-v" #'yank
+      ;   "s-s" #'save-buffer
+      ;   ;; Buffer-local font scaling
+      ;   "s-+" (λ! (text-scale-set 0))
+      ;   "s-=" #'text-scale-increase
+      ;   "s--" #'text-scale-decrease
+      ;   ;; Conventional text-editing keys
+      ;   "s-a" #'mark-whole-buffer
+      ;   :gi [s-return]    #'+default/newline-below
+      ;   :gi [s-S-return]  #'+default/newline-above
+      ;   :gi [s-backspace] #'doom/backward-kill-to-bol-and-indent)
 
-;       :leader
-;       (:prefix "f"
-;         :desc "Find file in dotfiles" "t" #'+hlissner/find-in-dotfiles
-;         :desc "Browse dotfiles"       "T" #'+hlissner/browse-dotfiles)
-;       (:prefix "n"
-;         :desc "Open mode notes"       "m" #'+hlissner/find-notes-for-major-mode
-;         :desc "Open project notes"    "p" #'+hlissner/find-notes-for-project))
+      ; :leader
+      ; (:prefix "f"
+      ;   :desc "Find file in dotfiles" "t" #'+hlissner/find-in-dotfiles
+      ;   :desc "Browse dotfiles"       "T" #'+hlissner/browse-dotfiles)
+      ; (:prefix "n"
+      ;   :desc "Open mode notes"       "m" #'+hlissner/find-notes-for-major-mode
+      ;   :desc "Open project notes"    "p" #'+hlissner/find-notes-for-project))
 
 
 ; ;;
