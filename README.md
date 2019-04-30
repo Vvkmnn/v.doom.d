@@ -2,3 +2,4 @@
 
 A fork of @hlissner's [private module](https://github.com/hlissner/doom-emacs-private) for the excellent [doom-emacs](https://github.com/hlissner/doom-emacs).
 
+![screenshot](v.doom.png)

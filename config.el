@@ -31,23 +31,27 @@
  user-full-name    "Vivek Menon"
  user-mail-address "mail@vvkmnn.xyz")
 
+;; Doom
+; (setq doom-private-dir "~/.v.doom.d/")
+
 ;; Theme
 (setq doom-theme 'doom-city-lights)
 
-;; List
-(add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
+;; Org 
+(setq org-directory "~/.org/")
 
-;; macOS
-(when (eq system-type 'darwin)
+;; OS
+(when (eq system-type 'darwin) ;; macOS
   (setq ns-use-thin-smoothing t)
+  (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (add-hook 'window-setup-hook #'toggle-frame-maximized))
 
 ;; python3 FIXME install pyenv 
 ;; https://github.com/hlissner/doom-emacs/issues/212
-(setq python-shell-interpreter "python3"
-      flycheck-python-pycompile-executable "python3")
+;; (setq python-shell-interpreter "python3"
+;;       flycheck-python-pycompile-executable "python3")
 
 ;; NOTE Review upstream 
 
