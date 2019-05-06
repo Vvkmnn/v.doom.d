@@ -37,8 +37,13 @@
 ;; Theme
 (setq doom-theme 'doom-city-lights)
 
-;; Org 
+; ;; lang/org
 (setq org-directory "~/.org/")
+      ; org-ellipsis " ▼ ")
+      ;; The standard unicode characters are usually misaligned depending on the
+      ;; font. This bugs me. Markdown #-marks for headlines are more elegant.
+      ;; org-bullets-bullet-list '("#"))
+
 
 ;; OS
 (when (eq system-type 'darwin) ;; macOS
@@ -50,8 +55,8 @@
 
 ;; python3 FIXME install pyenv 
 ;; https://github.com/hlissner/doom-emacs/issues/212
-;; (setq python-shell-interpreter "python3"
-;;       flycheck-python-pycompile-executable "python3")
+(setq python-shell-interpreter "python3"
+      flycheck-python-pycompile-executable "python3")
 
 ;; NOTE Review upstream 
 
@@ -161,16 +166,6 @@
 ;       transient-values '((magit-commit "--gpg-sign=5F6C0EA160557395")
 ;                          (magit-rebase "--autosquash" "--gpg-sign=5F6C0EA160557395")
 ;                          (magit-pull "--rebase" "--gpg-sign=5F6C0EA160557395")))
-
-; ;; lang/org
-; (setq org-directory (expand-file-name "~/work/org/")
-;       org-agenda-files (list org-directory)
-;       org-ellipsis " ▼ "
-
-;       ;; The standard unicode characters are usually misaligned depending on the
-;       ;; font. This bugs me. Markdown #-marks for headlines are more elegant.
-;       org-bullets-bullet-list '("#"))
-
 
 ; ;;
 ; ;; Custom

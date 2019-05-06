@@ -11,3 +11,6 @@
 
 ; FIXME from upstream
 ; (disable-packages! emacs-snippets exec-path-from-shell)
+
+; Disable Packages
+;; (disable-packages! js2-refactor)
