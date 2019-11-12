@@ -26,26 +26,81 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; v
+;; User
 (setq-default
  user-full-name    "Vivek Menon"
  user-mail-address "mail@vvkmnn.xyz")
 
-;; Doom
-; (setq doom-private-dir "~/.v.doom.d/")
+;; Emacs
+(setq-default frame-title-format '("vDoom Emacs | %m | %b")) ;; Title
+; (setq doom-theme 'doom-vibrant) ;; Theme
+(setq doom-theme 'doom-city-lights) ;; City Lights Theme
+; (setq doom-private-dir "~/.v.doom.d/") ;; Private Dir
 
-;; Theme
-(setq doom-theme 'doom-city-lights)
+; (setq-hook! 'minibuffer-setup-hook show-trailing-whitespace nil) ;; Minibuffer
 
-; ;; lang/org
-(setq org-directory "~/.org/")
-      ; org-ellipsis " ▼ ")
-      ;; The standard unicode characters are usually misaligned depending on the
-      ;; font. This bugs me. Markdown #-marks for headlines are more elegant.
-      ;; org-bullets-bullet-list '("#"))
+;;; UI
+
+; (setq doom-font (font-spec :family "Fira Code" :size 12)
+;       doom-variable-pitch-font (font-spec :family "Noto Sans" :size 13))
+
+; (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
 
 
-;; OS
+; Package Lists
+; (add-to-list 'package-archives
+;              '("melpa" . "http://melpa.org/packages/") t)
+; (add-to-list 'package-archives
+;              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+; (add-to-list 'package-archives
+;          '("marmalade" . "https://marmalade-repo.org/packages/") t)
+; (add-to-list 'package-archives
+;              '("gnu elpa" . "https://elpa.gnu.org/packages/") t)
+
+; Certificates
+; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
+; Dictionary
+
+;; yabai
+;; DOCS https://github.com/koekeishiya/yabai/issues/86#issuecomment-507934212
+; (menu-bar-mode t)
+
+; (setq ispell-program-name "aspell"
+;       ispell-silently-savep t)
+
+;; lang/latex
+;; (setq-default TeX-engine 'xetex
+;;               TeX-PDF-mode t
+;;               TeX-master nil)
+
+
+
+;; app/rss
+                                        ; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))
+
+;; tools/magit
+                                        ; (setq magit-save-repository-buffers nil)
+;; magit-repository-directories '(("~/work" . 2))
+;; transient-values '((magit-commit "--gpg-sign=5F6C0EA160557395"
+;;                     (magit-rebase "--autosquash" "--gpg-sign=5F6C0EA160557395")
+;;                     (magit-pull "--rebase" "--gpg-sign=5F6C0EA160557395"))))
+
+;; editor/evil
+                                        ; (map! :m "M-j" '+default:multi-next-line
+                                        ;       :m "M-k" '+default:multi-previous-line
+
+                                        ;       ;; Easier window movement
+                                        ;       :n "C-h" 'evil-window-left
+                                        ;       :n "C-j" 'evil-window-down
+                                        ;       :n "C-k" 'evil-window-up
+                                        ;       :n "C-l" 'evil-window-right
+
+                                        ;       (:map evil-treemacs-state-map
+                                        ;         "C-h" 'evil-window-left
+                                        ;         "C-l" 'evil-window-right))
+
+;; tools/macos
 (when (eq system-type 'darwin) ;; macOS
   (setq ns-use-thin-smoothing t)
   (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
@@ -53,125 +108,109 @@
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (add-hook 'window-setup-hook #'toggle-frame-maximized))
 
-;; python3 FIXME install pyenv 
-;; https://github.com/hlissner/doom-emacs/issues/212
-(setq python-shell-interpreter "python3"
-      flycheck-python-pycompile-executable "python3")
+;; lang/python
+;; https://github.com/hlissner/doom-emacs/issues/212 FIXME install pyenv?
+; (setq python-shell-interpreter "python3"
+;       flycheck-python-pycompile-executable "python3")
 
-;; NOTE Review upstream 
+;; lang/org
+; (setq org-dir "~/.org"
+;       org-directory "~/.org/"
+;       org-ellipsis " ▼ ")
 
-; ;; (defvar xdg-data (getenv "XDG_DATA_HOME"))
-; ;; (defvar xdg-bin (getenv "XDG_BIN_HOME"))
-; ;; (defvar xdg-cache (getenv "XDG_CACHE_HOME"))
-; ;; (defvar xdg-config (getenv "XDG_CONFIG_HOME"))
-
-
-;  ;; doom-variable-pitch-font (font-spec :family "Fira Sans")
-;  ;; doom-unicode-font (font-spec :family "Input Mono Narrow" :size 12)
-;  doom-big-font (font-spec :family "Fira Mono" :size 19)
-
-;  +workspaces-switch-project-function #'ignore
-;  +pretty-code-enabled-modes '(emacs-lisp-mode org-mode)
-
-; ;; (setq-hook! 'minibuffer-setup-hook show-trailing-whitespace nil)
-
-; (add-to-list 'org-modules 'org-habit t)
+;;;  lang/plantuml
+;; (org-babel-do-load-languages
+;;  'org-babel-load-languages
+;;  '((plantuml . t))) ;; Add Plant UML to Org
 
 
-; ;;
-; ;; Host-specific config
+;; NOTE Review upstream
 
-; (when (equal (system-name) "triton")
-;   ;; I've swapped these keys on my keyboard
-;   (setq x-super-keysym 'meta
-;         x-meta-keysym  'super))
-
-; (pcase (system-name)
-;   ("halimede"
-;    (setq doom-font (font-spec :family "Input Mono Narrow" :size 9)))
-;   (_
-;    (setq doom-font (font-spec :family "Input Mono Narrow" :size 12)
-;          +modeline-height 25)))
+;; (defvar xdg-data (getenv "XDG_DATA_HOME"))
+;; (defvar xdg-bin (getenv "XDG_BIN_HOME"))
+;; (defvar xdg-cache (getenv "XDG_CACHE_HOME"))
+;; (defvar xdg-config (getenv "XDG_CONFIG_HOME"))
 
 
-;;
-;; Keybinds
+;;     doom-variable-pitch-font (font-spec :family "Fira Sans")
+;;     doom-unicode-font (font-spec :family "Input Mono Narrow" :size 12)
+;;     doom-big-font (font-spec :family "Fira Mono" :size 19)
 
-(map! :m "M-j" '+default:multi-next-line
-      :m "M-k" '+default:multi-previous-line
-
-      ;; Easier window movement
-      :n "C-h" 'evil-window-left
-      :n "C-j" 'evil-window-down
-      :n "C-k" 'evil-window-up
-      :n "C-l" 'evil-window-right
-
-      (:map evil-treemacs-state-map
-        "C-h" 'evil-window-left
-        "C-l" 'evil-window-right))
-
-      ; (:when IS-LINUX
-      ;   "s-x" #'execute-extended-command
-      ;   "s-;" #'eval-expression
-      ;   ;; use super for window/frame navigation/manipulation
-      ;   "s-w" #'delete-window
-      ;   "s-W" #'delete-frame
-      ;   "s-n" #'+default/new-buffer
-      ;   "s-N" #'make-frame
-      ;   "s-q" (if (daemonp) #'delete-frame #'evil-quit-all)
-      ;   ;; Restore OS undo, save, copy, & paste keys (without cua-mode, because
-      ;   ;; it imposes some other functionality and overhead we don't need)
-      ;   "s-z" #'undo
-      ;   "s-c" (if (featurep 'evil) #'evil-yank #'copy-region-as-kill)
-      ;   "s-v" #'yank
-      ;   "s-s" #'save-buffer
-      ;   ;; Buffer-local font scaling
-      ;   "s-+" (λ! (text-scale-set 0))
-      ;   "s-=" #'text-scale-increase
-      ;   "s--" #'text-scale-decrease
-      ;   ;; Conventional text-editing keys
-      ;   "s-a" #'mark-whole-buffer
-      ;   :gi [s-return]    #'+default/newline-below
-      ;   :gi [s-S-return]  #'+default/newline-above
-      ;   :gi [s-backspace] #'doom/backward-kill-to-bol-and-indent)
-
-      ; :leader
-      ; (:prefix "f"
-      ;   :desc "Find file in dotfiles" "t" #'+hlissner/find-in-dotfiles
-      ;   :desc "Browse dotfiles"       "T" #'+hlissner/browse-dotfiles)
-      ; (:prefix "n"
-      ;   :desc "Open mode notes"       "m" #'+hlissner/find-notes-for-major-mode
-      ;   :desc "Open project notes"    "p" #'+hlissner/find-notes-for-project))
+;;     +workspaces-switch-project-function #'ignore
 
 
-; ;;
-; ;; Modules
+;; (add-to-list 'org-modules 'org-habit t)
 
-; ;; app/rss
-; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))
 
-; ;; emacs/eshell
-; (after! eshell
-;   (set-eshell-alias!
-;    "f"   "find-file $1"
-;    "l"   "ls -lh"
-;    "d"   "dired $1"
-;    "gl"  "(call-interactively 'magit-log-current)"
-;    "gs"  "magit-status"
-;    "gc"  "magit-commit"))
+;;     ;;
+;;     ;; Host-specific config
 
-; ;; tools/magit
-; (setq magit-repository-directories '(("~/work" . 2))
-;       magit-save-repository-buffers nil
-;       transient-values '((magit-commit "--gpg-sign=5F6C0EA160557395")
-;                          (magit-rebase "--autosquash" "--gpg-sign=5F6C0EA160557395")
-;                          (magit-pull "--rebase" "--gpg-sign=5F6C0EA160557395")))
+;;     (when (equal (system-name) "triton")
+;;       ;; I've swapped these keys on my keyboard
+;;       (setq x-super-keysym 'meta
+;;             x-meta-keysym  'super))
 
-; ;;
-; ;; Custom
+;;     (pcase (system-name)
+;;       ("halimede"
+;;        (setq doom-font (font-spec :family "Input Mono Narrow" :size 9)))
+;;       (_
+;;        (setq doom-font (font-spec :family "Input Mono Narrow" :size 12)
+;;              +modeline-height 25)))
 
-; (def-project-mode! +javascript-screeps-mode
-;   :match "/screeps\\(?:-ai\\)?/.+$"
-;   :modes (+javascript-npm-mode)
-;   :add-hooks (+javascript|init-screeps-mode)
-;   :on-load (load! "lisp/screeps"))
+
+
+;;     ; (:when IS-LINUX
+;;     ;   "s-x" #'execute-extended-command
+;;     ;   "s-;" #'eval-expression
+;;     ;   ;; use super for window/frame navigation/manipulation
+;;     ;   "s-w" #'delete-window
+;;     ;   "s-W" #'delete-frame
+;;     ;   "s-n" #'+default/new-buffer
+;;     ;   "s-N" #'make-frame
+;;     ;   "s-q" (if (daemonp) #'delete-frame #'evil-quit-all)
+;;     ;   ;; Restore OS undo, save, copy, & paste keys (without cua-mode, because
+;;     ;   ;; it imposes some other functionality and overhead we don't need)
+;;     ;   "s-z" #'undo
+;;     ;   "s-c" (if (featurep 'evil) #'evil-yank #'copy-region-as-kill)
+;;     ;   "s-v" #'yank
+;;     ;   "s-s" #'save-buffer
+;;     ;   ;; Buffer-local font scaling
+;;     ;   "s-+" (λ! (text-scale-set 0))
+;;     ;   "s-=" #'text-scale-increase
+;;     ;   "s--" #'text-scale-decrease
+;;     ;   ;; Conventional text-editing keys
+;;     ;   "s-a" #'mark-whole-buffer
+;;     ;   :gi [s-return]    #'+default/newline-below
+;;     ;   :gi [s-S-return]  #'+default/newline-above
+;;     ;   :gi [s-backspace] #'doom/backward-kill-to-bol-and-indent)
+
+;;     ; :leader
+;;     ; (:prefix "f"
+;;     ;   :desc "Find file in dotfiles" "t" #'+hlissner/find-in-dotfiles
+;;     ;   :desc "Browse dotfiles"       "T" #'+hlissner/browse-dotfiles)
+;;     ; (:prefix "n"
+;;     ;   :desc "Open mode notes"       "m" #'+hlissner/find-notes-for-major-mode
+;;     ;   :desc "Open project notes"    "p" #'+hlissner/find-notes-for-project))
+
+
+;;     ; ;;
+;;     ; ;; Modules
+
+;;     ; ;; emacs/eshell
+;;     ; (after! eshell
+;;     ;   (set-eshell-alias!
+;;     ;    "f"   "find-file $1"
+;;     ;    "l"   "ls -lh"
+;;     ;    "d"   "dired $1"
+;;     ;    "gl"  "(call-interactively 'magit-log-current)"
+;;     ;    "gs"  "magit-status"
+;;     ;    "gc"  "magit-commit"))
+
+;;     ; ;;
+;;     ; ;; Custom
+
+;;     ; (def-project-mode! +javascript-screeps-mode
+;;     ;   :match "/screeps\\(?:-ai\\)?/.+$"
+;;     ;   :modes (+javascript-npm-mode)
+;;     ;   :add-hooks (+javascript|init-screeps-mode)
+;;     ;   :on-load (load! "lisp/screeps"))
