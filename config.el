@@ -26,53 +26,59 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; User
+;; user
 (setq-default
  user-full-name    "Vivek Menon"
  user-mail-address "mail@vvkmnn.xyz")
 
-;; Emacs
-(setq-default frame-title-format '("vDoom Emacs | %m | %b")) ;; Title
-; (setq doom-theme 'doom-vibrant) ;; Theme
-(setq doom-theme 'doom-city-lights) ;; City Lights Theme
-; (setq doom-private-dir "~/.v.doom.d/") ;; Private Dir
+;; editor
+(setq frame-title-format '("vDoom Emacs | %m | %b") ;; Title
+      ;; doom-private-dir "~/.v.doom.d/" ;; Private Dir
+      menu-bar-mode t ;; yabai NOTE https://github.com/koekeishiya/yabai/issues/86#issuecomment-507934212
+      doom-theme 'doom-city-lights)
+      ;; doom-theme 'doom-vibrant)
 
-; (setq-hook! 'minibuffer-setup-hook show-trailing-whitespace nil) ;; Minibuffer
+;;; ui/pretty-code
 
-;;; UI
-
-; (setq doom-font (font-spec :family "Fira Code" :size 12)
-;       doom-variable-pitch-font (font-spec :family "Noto Sans" :size 13))
-
-; (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
+;; Iosevka
+;; (setq doom-font (font-spec :family "Iosevka" :size 13)
+;;     doom-unicode-font (font-spec :family "Iosevka" :size 13)
+;;     doom-variable-pitch-font (font-spec :family "Iosevka" :size 13))
 
 
-; Package Lists
-; (add-to-list 'package-archives
-;              '("melpa" . "http://melpa.org/packages/") t)
-; (add-to-list 'package-archives
-;              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-; (add-to-list 'package-archives
-;          '("marmalade" . "https://marmalade-repo.org/packages/") t)
-; (add-to-list 'package-archives
-;              '("gnu elpa" . "https://elpa.gnu.org/packages/") t)
 
-; Certificates
-; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+;; Fira
+(setq doom-font (font-spec :family "Fira Code" :size 13)
+      doom-unicode-font (font-spec :family "Fira Mono" :size 13)
+      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 
-; Dictionary
 
-;; yabai
-;; DOCS https://github.com/koekeishiya/yabai/issues/86#issuecomment-507934212
-; (menu-bar-mode t)
 
-; (setq ispell-program-name "aspell"
-;       ispell-silently-savep t)
+
+                                        ; Package Lists
+                                        ; (add-to-list 'package-archives
+                                        ;              '("melpa" . "http://melpa.org/packages/") t)
+                                        ; (add-to-list 'package-archives
+                                        ;              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+                                        ; (add-to-list 'package-archives
+                                        ;          '("marmalade" . "https://marmalade-repo.org/packages/") t)
+                                        ; (add-to-list 'package-archives
+                                        ;              '("gnu elpa" . "https://elpa.gnu.org/packages/") t)
+
+                                        ; Certificates
+                                        ; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
+                                        ; Dictionary
+
+
+                                        ; (setq ispell-program-name "aspell"
+                                        ;       ispell-silently-savep t)
 
 ;; lang/latex
-;; (setq-default TeX-engine 'xetex
-;;               TeX-PDF-mode t
-;;               TeX-master nil)
+(setq-default TeX-engine 'xetex
+              TeX-PDF-mode t
+              TeX-master nil)
+
 
 
 
@@ -87,36 +93,37 @@
 ;;                     (magit-pull "--rebase" "--gpg-sign=5F6C0EA160557395"))))
 
 ;; editor/evil
-                                        ; (map! :m "M-j" '+default:multi-next-line
-                                        ;       :m "M-k" '+default:multi-previous-line
+(map! :n "C-h" 'evil-window-left
+      :n "C-j" 'evil-window-down
+      :n "C-k" 'evil-window-up
+      :n "C-l" 'evil-window-right
 
-                                        ;       ;; Easier window movement
-                                        ;       :n "C-h" 'evil-window-left
-                                        ;       :n "C-j" 'evil-window-down
-                                        ;       :n "C-k" 'evil-window-up
-                                        ;       :n "C-l" 'evil-window-right
+      ;; :m "M-j" '+default:multi-next-line
+      ;; :m "M-k" '+default:multi-previous-line
 
-                                        ;       (:map evil-treemacs-state-map
-                                        ;         "C-h" 'evil-window-left
-                                        ;         "C-l" 'evil-window-right))
+      (:map evil-treemacs-state-map
+        "C-h" 'evil-window-left
+        "C-l" 'evil-window-right))
 
-;; tools/macos
+
+;; :tools/macos
 (when (eq system-type 'darwin) ;; macOS
   (setq ns-use-thin-smoothing t)
+  ;; (mac-auto-operator-composition-mode)
   (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (add-hook 'window-setup-hook #'toggle-frame-maximized))
 
-;; lang/python
-;; https://github.com/hlissner/doom-emacs/issues/212 FIXME install pyenv?
-; (setq python-shell-interpreter "python3"
-;       flycheck-python-pycompile-executable "python3")
-
 ;; lang/org
-; (setq org-dir "~/.org"
-;       org-directory "~/.org/"
-;       org-ellipsis " ▼ ")
+(setq org-dir "~/.org"
+      org-directory "~/.org/"
+      org-ellipsis " ▼ ")
+
+;; :lang/python
+;; https://github.com/hlissner/doom-emacs/issues/212 FIXME install pyenv?
+;; (setq python-shell-interpreter "python3"
+;;       flycheck-python-pycompile-executable "python3")
 
 ;;;  lang/plantuml
 ;; (org-babel-do-load-languages
@@ -131,10 +138,6 @@
 ;; (defvar xdg-cache (getenv "XDG_CACHE_HOME"))
 ;; (defvar xdg-config (getenv "XDG_CONFIG_HOME"))
 
-
-;;     doom-variable-pitch-font (font-spec :family "Fira Sans")
-;;     doom-unicode-font (font-spec :family "Input Mono Narrow" :size 12)
-;;     doom-big-font (font-spec :family "Fira Mono" :size 19)
 
 ;;     +workspaces-switch-project-function #'ignore
 
