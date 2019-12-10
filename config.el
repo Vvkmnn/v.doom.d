@@ -33,7 +33,7 @@
 
 ;; editor
 (setq frame-title-format '("vDoom Emacs | %m | %b") ;; Title
-      ;; doom-private-dir "~/.v.doom.d/" ;; Private Dir
+      doom-private-dir "~/.v.doom.d/" ;; Private Dir
       menu-bar-mode t ;; yabai NOTE https://github.com/koekeishiya/yabai/issues/86#issuecomment-507934212
       doom-theme 'doom-city-lights)
       ;; doom-theme 'doom-vibrant)
