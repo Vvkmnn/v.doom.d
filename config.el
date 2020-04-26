@@ -33,46 +33,42 @@
 
 ;; editor
 (setq frame-title-format '("vDoom Emacs | %m | %b") ;; Title
-      doom-private-dir "~/.v.doom.d/" ;; Private Dir
-      menu-bar-mode t ;; yabai NOTE https://github.com/koekeishiya/yabai/issues/86#issuecomment-507934212
-      doom-theme 'doom-city-lights)
-      ;; doom-theme 'doom-vibrant)
+      doom-private-dir "~/.v.doom.d/"               ;; Private Dir
+      menu-bar-mode t                               ;; For Yabai WM NOTE https://github.com/koekeishiya/yabai/issues/86#issuecomment-507934212
+      doom-theme 'doom-city-lights)                 ;; Theme
 
 ;;; ui/pretty-code
-
 ;; Iosevka
 ;; (setq doom-font (font-spec :family "Iosevka" :size 13)
 ;;     doom-unicode-font (font-spec :family "Iosevka" :size 13)
 ;;     doom-variable-pitch-font (font-spec :family "Iosevka" :size 13))
-
-
-
 ;; Fira
 (setq doom-font (font-spec :family "Fira Code" :size 13)
       doom-unicode-font (font-spec :family "Fira Mono" :size 13)
       doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 
 
+; Package Lists
+; (add-to-list 'package-archives
+;              '("melpa" . "http://melpa.org/packages/") t)
+; (add-to-list 'package-archives
+;              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+; (add-to-list 'package-archives
+;          '("marmalade" . "https://marmalade-repo.org/packages/") t)
+; (add-to-list 'package-archives
+;              '("gnu elpa" . "https://elpa.gnu.org/packages/") t)
+
+; Certificates
+; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
+; Dictionary
 
 
-                                        ; Package Lists
-                                        ; (add-to-list 'package-archives
-                                        ;              '("melpa" . "http://melpa.org/packages/") t)
-                                        ; (add-to-list 'package-archives
-                                        ;              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-                                        ; (add-to-list 'package-archives
-                                        ;          '("marmalade" . "https://marmalade-repo.org/packages/") t)
-                                        ; (add-to-list 'package-archives
-                                        ;              '("gnu elpa" . "https://elpa.gnu.org/packages/") t)
+; (setq ispell-program-name "aspell"
+;       ispell-silently-savep t)
 
-                                        ; Certificates
-                                        ; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
-
-                                        ; Dictionary
-
-
-                                        ; (setq ispell-program-name "aspell"
-                                        ;       ispell-silently-savep t)
+;; tools/lsp
+(setq lsp-enable-file-watchers nil)
 
 ;; lang/latex
 (setq-default TeX-engine 'xetex
@@ -80,10 +76,21 @@
               TeX-master nil)
 
 
-
+;; lang/cc
+(after! ccls
+  (setq ccls-initialization-options
+        '(:clang (:extraArgs ["-isystem/Library/Developer/CommandLineTools/usr/include/c++/v1"
+                              "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"
+                              "-isystem/usr/local/include"
+                              "-isystem/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"
+                              "-isystem/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"
+                              "-isystem/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"
+                              "-isystem/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"]
+                  :resourceDir "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0")))
+  )
 
 ;; app/rss
-                                        ; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))
+; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))
 
 ;; tools/magit
                                         ; (setq magit-save-repository-buffers nil)
@@ -120,6 +127,8 @@
       org-directory "~/.org/"
       org-ellipsis " ▼ ")
 
+;; editor/flycheck
+(setq flycheck-checker-error-threshold 666)
 ;; :lang/python
 ;; https://github.com/hlissner/doom-emacs/issues/212 FIXME install pyenv?
 ;; (setq python-shell-interpreter "python3"
