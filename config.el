@@ -33,7 +33,7 @@
 
 ;; editor
 (setq frame-title-format '("vDoom Emacs | %m | %b") ;; Title
-      doom-private-dir "~/.v.doom.d/"               ;; Private Dir
+      ;; doom-private-dir "~/.v.doom.d/"               ;; Private Dir
       menu-bar-mode t                               ;; For Yabai WM NOTE https://github.com/koekeishiya/yabai/issues/86#issuecomment-507934212
       doom-theme 'doom-city-lights)                 ;; Theme
 
@@ -43,9 +43,9 @@
 ;;     doom-unicode-font (font-spec :family "Iosevka" :size 13)
 ;;     doom-variable-pitch-font (font-spec :family "Iosevka" :size 13))
 ;; Fira
-(setq doom-font (font-spec :family "Fira Code" :size 13)
-      doom-unicode-font (font-spec :family "Fira Mono" :size 13)
-      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+;;(setq doom-font (font-spec :family "Fira Code" :size 13)
+;;      doom-unicode-font (font-spec :family "Fira Mono" :size 13)
+;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 
 
 ; Package Lists
@@ -77,17 +77,17 @@
 
 
 ;; lang/cc
-(after! ccls
-  (setq ccls-initialization-options
-        '(:clang (:extraArgs ["-isystem/Library/Developer/CommandLineTools/usr/include/c++/v1"
-                              "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"
-                              "-isystem/usr/local/include"
-                              "-isystem/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"
-                              "-isystem/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"
-                              "-isystem/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"
-                              "-isystem/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"]
-                  :resourceDir "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0")))
-  )
+;; (after! ccls
+;;   (setq ccls-initialization-options
+;;         '(:clang (:extraArgs ["-isystem/Library/Developer/CommandLineTools/usr/include/c++/v1"
+;;                               "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"
+;;                               "-isystem/usr/local/include"
+;;                               "-isystem/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"
+;;                               "-isystem/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"
+;;                               "-isystem/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"
+;;                               "-isystem/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"]
+;;                   :resourceDir "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0")))
+;;   )
 
 ;; app/rss
 ; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))
@@ -100,17 +100,17 @@
 ;;                     (magit-pull "--rebase" "--gpg-sign=5F6C0EA160557395"))))
 
 ;; editor/evil
-(map! :n "C-h" 'evil-window-left
-      :n "C-j" 'evil-window-down
-      :n "C-k" 'evil-window-up
-      :n "C-l" 'evil-window-right
-
-      ;; :m "M-j" '+default:multi-next-line
-      ;; :m "M-k" '+default:multi-previous-line
-
-      (:map evil-treemacs-state-map
-        "C-h" 'evil-window-left
-        "C-l" 'evil-window-right))
+;; (map! :n "C-h" 'evil-window-left
+;;       :n "C-j" 'evil-window-down
+;;       :n "C-k" 'evil-window-up
+;;       :n "C-l" 'evil-window-right
+;; 
+;;       ;; :m "M-j" '+default:multi-next-line
+;;       ;; :m "M-k" '+default:multi-previous-line
+;; 
+;;       (:map evil-treemacs-state-map
+;;         "C-h" 'evil-window-left
+;;         "C-l" 'evil-window-right))
 
 
 ;; :tools/macos
@@ -123,16 +123,22 @@
   (add-hook 'window-setup-hook #'toggle-frame-maximized))
 
 ;; lang/org
-(setq org-dir "~/.org"
-      org-directory "~/.org/"
-      org-ellipsis " ▼ ")
+;; (setq org-dir "~/.org"
+;;       org-directory "~/.org/"
+;;       org-ellipsis " ▼ ")
 
 ;; editor/flycheck
 (setq flycheck-checker-error-threshold 666)
-;; :lang/python
+
+;; lang/python
 ;; https://github.com/hlissner/doom-emacs/issues/212 FIXME install pyenv?
-;; (setq python-shell-interpreter "python3"
-;;       flycheck-python-pycompile-executable "python3")
+;; (when (and (executable-find "python3")
+;;              (string= python-shell-interpreter "python"))
+;;     (setq python-shell-interpreter "python3"))
+;; 
+;;   ;; Env vars
+;;   (with-eval-after-load 'exec-path-from-shell
+;;     (exec-path-from-shell-copy-env "PYTHONPATH"))
 
 ;;;  lang/plantuml
 ;; (org-babel-do-load-languages
