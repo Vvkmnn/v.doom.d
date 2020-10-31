@@ -29,7 +29,7 @@
 ;; user
 (setq-default
  user-full-name    "Vivek Menon"
- user-mail-address "mail@vvkmnn.xyz")
+ user-mail-address "v+emacs@vvkmnn.xyz")
 
 ;; editor
 (setq frame-title-format '("vDoom Emacs | %m | %b") ;; Title
@@ -37,16 +37,14 @@
       menu-bar-mode t                               ;; For Yabai WM NOTE https://github.com/koekeishiya/yabai/issues/86#issuecomment-507934212
       doom-theme 'doom-city-lights)                 ;; Theme
 
+
 ;;; ui/pretty-code
 ;; Iosevka
 ;; (setq doom-font (font-spec :family "Iosevka" :size 13)
 ;;     doom-unicode-font (font-spec :family "Iosevka" :size 13)
 ;;     doom-variable-pitch-font (font-spec :family "Iosevka" :size 13))
 ;; Fira
-;;(setq doom-font (font-spec :family "Fira Code" :size 13)
-;;      doom-unicode-font (font-spec :family "Fira Mono" :size 13)
-;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
-
+(setq doom-font (font-spec :family "Fira Code" :size 13))
 
 ; Package Lists
 ; (add-to-list 'package-archives
