@@ -43,8 +43,11 @@
 ;; (setq doom-font (font-spec :family "Iosevka" :size 13)
 ;;     doom-unicode-font (font-spec :family "Iosevka" :size 13)
 ;;     doom-variable-pitch-font (font-spec :family "Iosevka" :size 13))
+
 ;; Fira
-(setq doom-font (font-spec :family "Fira Code" :size 13))
+(setq doom-font (font-spec :family "Fira Code" :size 13)
+     doom-unicode-font (font-spec :family "Fira Mono" :size 13)
+     doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 
 ; Package Lists
 ; (add-to-list 'package-archives
@@ -66,12 +69,15 @@
 ;       ispell-silently-savep t)
 
 ;; tools/lsp
-(setq lsp-enable-file-watchers nil)
+;; (setq lsp-enable-file-watchers nil)
 
 ;; lang/latex
 (setq-default TeX-engine 'xetex
               TeX-PDF-mode t
               TeX-master nil)
+
+(setenv "PATH" (concat (getenv "PATH") ":/Library/TeX/texbin/"))
+(setq exec-path (append exec-path '("/Library/TeX/texbin/")))
 
 
 ;; lang/cc
