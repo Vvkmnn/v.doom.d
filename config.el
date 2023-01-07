@@ -37,6 +37,15 @@
       menu-bar-mode t                               ;; For Yabai WM NOTE https://github.com/koekeishiya/yabai/issues/86#issuecomment-507934212
       doom-theme 'doom-city-lights)                 ;; Theme
 
+;; Copilot
+;; accept completion from copilot and fallback to company
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (("C-TAB" . 'copilot-accept-completion-by-word)
+         ("C-<tab>" . 'copilot-accept-completion-by-word)
+         :map copilot-completion-map
+         ("<tab>" . 'copilot-accept-completion)
+         ("TAB" . 'copilot-accept-completion)))
 
 ;;; ui/pretty-code
 ;; Iosevka
@@ -45,9 +54,9 @@
 ;;     doom-variable-pitch-font (font-spec :family "Iosevka" :size 13))
 
 ;; Fira
-(setq doom-font (font-spec :family "Fira Code" :size 13)
-     doom-unicode-font (font-spec :family "Fira Mono" :size 13)
-     doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+; (setq doom-font (font-spec :family "Fira Code" :size 13)
+;      doom-unicode-font (font-spec :family "Fira Mono" :size 13)
+;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 
 ; Package Lists
 ; (add-to-list 'package-archives
