@@ -48,3 +48,12 @@
 
 (package! copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
+
+; (package! chatgpt
+;   :recipe (:host github :repo "gavinok/chatgpt.el" ))
+
+;; https://gist.github.com/Gavinok/a18e0b2dac74e4ae67df35e45a170f7f
+(package! chatgpt
+  :recipe (:host github :repo "Gavinok/a18e0b2dac74e4ae67df35e45a170f7f" ))
+;; (package! chatgpt
+;;   :recipe (:type git :repo "https://gist.github.com/a18e0b2dac74e4ae67df35e45a170f7f.git" :files ("*.el" "dist")))
