@@ -49,10 +49,23 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
-(package! copilot
-  :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
+;; (package! copilot
+;;   :recipe (:host github :repo "zerolfx/copilot" :files ("*.el" "dist")))
 
 ;; https://gist.github.com/Gavinok/a18e0b2dac74e4ae67df35e45a170f7f
-(package! chatgpt
-  :recipe (:host github :repo "Gavinok/a18e0b2dac74e4ae67df35e45a170f7f" ))
+;; (package! chatgpt
+;;   :recipe (:type git :repo "https://gist.github.com/a18e0b2dac74e4ae67df35e45a170f7f.git")) ; :files("*.el")
 
+; (use-package! lsp-mode
+;   ;; Need to repeat this line from the Doom lsp module
+;   ;; declaration to keep it from eager-loading:
+;   :commands lsp-install-server
+
+;   :config
+;   (setq lsp-diagnostics-provider :none
+;         lsp-ui-sideline-enable nil
+;         lsp-modeline-diagnostics-enable nil
+;         lsp-modeline-diagnostics-enable nil
+;         lsp-signature-render-documentation nil
+;         lsp-enable-symbol-highlighting nil
+;         lsp-headerline-breadcrumb-enable nil))

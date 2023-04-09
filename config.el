@@ -1,4 +1,4 @@
-;;; ~/.config/doom/config.el -*- lexical-binding: t; -*-
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -26,232 +26,8 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; user
-(setq-default
- user-full-name    "Vivek Menon"
- user-mail-address "v+emacs@vvkmnn.xyz")
-
-;; editor
-(setq frame-title-format '("vDoom Emacs | %m | %b") ;; Title
-      ;; doom-private-dir "~/.v.doom.d/"               ;; Private Dir
-      menu-bar-mode t                               ;; For Yabai WM NOTE https://github.com/koekeishiya/yabai/issues/86#issuecomment-507934212
-      doom-theme 'doom-city-lights)                 ;; Theme
-
-;; Copilot
-;; accept completion from copilot and fallback to company
-(use-package! copilot
-  :hook (prog-mode . copilot-mode)
-  :bind (("C-TAB" . 'copilot-accept-completion-by-word)
-         ("C-<tab>" . 'copilot-accept-completion-by-word)
-         :map copilot-completion-map
-         ("<tab>" . 'copilot-accept-completion)
-         ("TAB" . 'copilot-accept-completion)))
-
-;;; ui/pretty-code
-;; ;; Iosevka
-;; (setq doom-font (font-spec :family "Iosevka" :size 13)
-;;     doom-unicode-font (font-spec :family "Iosevka" :size 13)
-;;     doom-variable-pitch-font (font-spec :family "Iosevka" :size 13))
-
-;; Fira
-; (setq doom-font (font-spec :family "Fira Code" :size 13)
-;      doom-unicode-font (font-spec :family "Fira Mono" :size 13)
-;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
-
-; Package Lists
-; (add-to-list 'package-archives
-;              '("melpa" . "http://melpa.org/packages/") t)
-; (add-to-list 'package-archives
-;              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-; (add-to-list 'package-archives
-;          '("marmalade" . "https://marmalade-repo.org/packages/") t)
-; (add-to-list 'package-archives
-;              '("gnu elpa" . "https://elpa.gnu.org/packages/") t)
-
-; Certificates
-; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
-
-; Dictionary
-
-
-; (setq ispell-program-name "aspell"
-;       ispell-silently-savep t)
-
-;; tools/lsp
-;; (setq lsp-enable-file-watchers nil)
-
-;; lang/latex
-(setq-default TeX-engine 'xetex
-              TeX-PDF-mode t
-              TeX-master nil)
-
-(setenv "PATH" (concat (getenv "PATH") ":/Library/TeX/texbin/"))
-(setq exec-path (append exec-path '("/Library/TeX/texbin/")))
-
-
-;; lang/cc
-;; (after! ccls
-;;   (setq ccls-initialization-options
-;;         '(:clang (:extraArgs ["-isystem/Library/Developer/CommandLineTools/usr/include/c++/v1"
-;;                               "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"
-;;                               "-isystem/usr/local/include"
-;;                               "-isystem/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"
-;;                               "-isystem/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"
-;;                               "-isystem/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"
-;;                               "-isystem/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"]
-;;                   :resourceDir "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0")))
-;;   )
-
-;; app/rss
-; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))
-
-;; tools/magit
-                                        ; (setq magit-save-repository-buffers nil)
-;; magit-repository-directories '(("~/work" . 2))
-;; transient-values '((magit-commit "--gpg-sign=5F6C0EA160557395"
-;;                     (magit-rebase "--autosquash" "--gpg-sign=5F6C0EA160557395")
-;;                     (magit-pull "--rebase" "--gpg-sign=5F6C0EA160557395"))))
-
-;; editor/evil
-;; (map! :n "C-h" 'evil-window-left
-;;       :n "C-j" 'evil-window-down
-;;       :n "C-k" 'evil-window-up
-;;       :n "C-l" 'evil-window-right
-;; 
-;;       ;; :m "M-j" '+default:multi-next-line
-;;       ;; :m "M-k" '+default:multi-previous-line
-;; 
-;;       (:map evil-treemacs-state-map
-;;         "C-h" 'evil-window-left
-;;         "C-l" 'evil-window-right))
-
-
-;; :tools/macos
-;; (when (eq system-type 'darwin) ;; macOS
-;;   (setq ns-use-thin-smoothing t)
-;;   ;; (mac-auto-operator-composition-mode)
-;;   (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
-;;   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-;;   (add-to-list 'default-frame-alist '(ns-appearance . dark))
-;;   (add-hook 'window-setup-hook #'toggle-frame-maximized))
-
-;; lang/org
-;; (setq org-dir "~/.org"
-;;       org-directory "~/.org/"
-;;       org-ellipsis " ▼ ")
-
-;; editor/flycheck
-(setq flycheck-checker-error-threshold 666)
-
-;; lang/python
-;; https://github.com/hlissner/doom-emacs/issues/212 FIXME install pyenv?
-;; (when (and (executable-find "python3")
-;;              (string= python-shell-interpreter "python"))
-;;     (setq python-shell-interpreter "python3"))
-;; 
-;;   ;; Env vars
-;;   (with-eval-after-load 'exec-path-from-shell
-;;     (exec-path-from-shell-copy-env "PYTHONPATH"))
-
-;;;  lang/plantuml
-;; (org-babel-do-load-languages
-;;  'org-babel-load-languages
-;;  '((plantuml . t))) ;; Add Plant UML to Org
-
-
-;; NOTE Review upstream
-
-;; (defvar xdg-data (getenv "XDG_DATA_HOME"))
-;; (defvar xdg-bin (getenv "XDG_BIN_HOME"))
-;; (defvar xdg-cache (getenv "XDG_CACHE_HOME"))
-;; (defvar xdg-config (getenv "XDG_CONFIG_HOME"))
-
-
-;;     +workspaces-switch-project-function #'ignore
-
-
-;; (add-to-list 'org-modules 'org-habit t)
-
-
-;;     ;;
-;;     ;; Host-specific config
-
-;;     (when (equal (system-name) "triton")
-;;       ;; I've swapped these keys on my keyboard
-;;       (setq x-super-keysym 'meta
-;;             x-meta-keysym  'super))
-
-;;     (pcase (system-name)
-;;       ("halimede"
-;;        (setq doom-font (font-spec :family "Input Mono Narrow" :size 9)))
-;;       (_
-;;        (setq doom-font (font-spec :family "Input Mono Narrow" :size 12)
-;;              +modeline-height 25)))
-
-
-
-;;     ; (:when IS-LINUX
-;;     ;   "s-x" #'execute-extended-command
-;;     ;   "s-;" #'eval-expression
-;;     ;   ;; use super for window/frame navigation/manipulation
-;;     ;   "s-w" #'delete-window
-;;     ;   "s-W" #'delete-frame
-;;     ;   "s-n" #'+default/new-buffer
-;;     ;   "s-N" #'make-frame
-;;     ;   "s-q" (if (daemonp) #'delete-frame #'evil-quit-all)
-;;     ;   ;; Restore OS undo, save, copy, & paste keys (without cua-mode, because
-;;     ;   ;; it imposes some other functionality and overhead we don't need)
-;;     ;   "s-z" #'undo
-;;     ;   "s-c" (if (featurep 'evil) #'evil-yank #'copy-region-as-kill)
-;;     ;   "s-v" #'yank
-;;     ;   "s-s" #'save-buffer
-;;     ;   ;; Buffer-local font scaling
-;;     ;   "s-+" (λ! (text-scale-set 0))
-;;     ;   "s-=" #'text-scale-increase
-;;     ;   "s--" #'text-scale-decrease
-;;     ;   ;; Conventional text-editing keys
-;;     ;   "s-a" #'mark-whole-buffer
-;;     ;   :gi [s-return]    #'+default/newline-below
-;;     ;   :gi [s-S-return]  #'+default/newline-above
-;;     ;   :gi [s-backspace] #'doom/backward-kill-to-bol-and-indent)
-
-;;     ; :leader
-;;     ; (:prefix "f"
-;;     ;   :desc "Find file in dotfiles" "t" #'+hlissner/find-in-dotfiles
-;;     ;   :desc "Browse dotfiles"       "T" #'+hlissner/browse-dotfiles)
-;;     ; (:prefix "n"
-;;     ;   :desc "Open mode notes"       "m" #'+hlissner/find-notes-for-major-mode
-;;     ;   :desc "Open project notes"    "p" #'+hlissner/find-notes-for-project))
-
-
-;;     ; ;;
-;;     ; ;; Modules
-
-;;     ; ;; emacs/eshell
-;;     ; (after! eshell
-;;     ;   (set-eshell-alias!
-;;     ;    "f"   "find-file $1"
-;;     ;    "l"   "ls -lh"
-;;     ;    "d"   "dired $1"
-;;     ;    "gl"  "(call-interactively 'magit-log-current)"
-;;     ;    "gs"  "magit-status"
-;;     ;    "gc"  "magit-commit"))
-
-;;     ; ;;
-;;     ; ;; Custom
-
-;;     ; (def-project-mode! +javascript-screeps-mode
-;;     ;   :match "/screeps\\(?:-ai\\)?/.+$"
-;;     ;   :modes (+javascript-npm-mode)
-;;     ;   :add-hooks (+javascript|init-screeps-mode)
-;;     ;   :on-load (load! "lisp/screeps"))
-
-
-;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
-
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
-
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
@@ -323,3 +99,251 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+;; user
+(setq-default
+ user-full-name    "Vivek Menon"
+ user-mail-address "v+emacs@vvkmnn.xyz")
+
+;; editor
+(setq frame-title-format '("vDoom Emacs | %m | %b") ;; Title
+      ;; doom-private-dir "~/.v.doom.d/"               ;; Private Dir
+      menu-bar-mode t                               ;; For Yabai WM NOTE https://github.com/koekeishiya/yabai/issues/86#issuecomment-507934212
+      doom-theme 'doom-city-lights)                 ;; Theme
+
+;; Flymake
+;; https://github.com/doomemacs/doomemacs/issues/2497
+ ;; (setq next-error-find-buffer-function 'next-error-buffer-unnavigated-current))
+
+;; LSP
+;; Not formatting web mode
+;; (setq-hook! 'web-mode-hook +format-with 'prettier-prettify)
+;; prevent so-long-mode from hijacking .ejs
+;; (setq so-long-file-local-mode-function 'so-long-inhibit)
+
+;; Copilot
+;; accept completion from copilot and fallback to company
+;; (use-package! copilot
+;;   :hook (prog-mode . copilot-mode)
+;;   :bind (("C-TAB" . 'copilot-accept-completion-by-word)
+;;          ("C-<tab>" . 'copilot-accept-completion-by-word)
+;;          :map copilot-completion-map
+;;          ("<tab>" . 'copilot-accept-completion)
+;;          ("TAB" . 'copilot-accept-completion)))
+
+;;; ui/pretty-code
+;; ;; Iosevka
+;; (setq doom-font (font-spec :family "Iosevka" :size 13)
+;;     doom-unicode-font (font-spec :family "Iosevka" :size 13)
+;;     doom-variable-pitch-font (font-spec :family "Iosevka" :size 13))
+
+;; Fira
+; (setq doom-font (font-spec :family "Fira Code" :size 13)
+;      doom-unicode-font (font-spec :family "Fira Mono" :size 13)
+;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+
+;; Package Lists
+; (add-to-list 'package-archives
+;              '("melpa" . "http://melpa.org/packages/") t)
+; (add-to-list 'package-archives
+;              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+; (add-to-list 'package-archives
+;          '("marmalade" . "https://marmalade-repo.org/packages/") t)
+; (add-to-list 'package-archives
+;              '("gnu elpa" . "https://elpa.gnu.org/packages/") t)
+
+; Certificates
+; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
+; Dictionary
+
+; (setq ispell-program-name "aspell"
+;       ispell-silently-savep t)
+
+;; tools/lsp
+;; (setq lsp-enable-file-watchers nil)
+
+;; lang/latex
+;; (setq-default TeX-engine 'xetex
+;;               TeX-PDF-mode t
+;;               TeX-master nil)
+
+;; (setenv "PATH" (concat (getenv "PATH") ":/Library/TeX/texbin/"))
+;; (setq exec-path (append exec-path '("/Library/TeX/texbin/")))
+
+;; lang/cc
+;; (after! ccls
+;;   (setq ccls-initialization-options
+;;         '(:clang (:extraArgs ["-isystem/Library/Developer/CommandLineTools/usr/include/c++/v1"
+;;                               "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"
+;;                               "-isystem/usr/local/include"
+;;                               "-isystem/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"
+;;                               "-isystem/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"
+;;                               "-isystem/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"
+;;                               "-isystem/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"]
+;;                   :resourceDir "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0")))
+;;   )
+
+;; app/rss
+; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))
+
+;; tools/magit
+;; (setq magit-save-repository-buffers nil)
+;; magit-repository-directories '(("~/work" . 2))
+;; transient-values '((magit-commit "--gpg-sign=5F6C0EA160557395"
+;;                     (magit-rebase "--autosquash" "--gpg-sign=5F6C0EA160557395")
+;;                     (magit-pull "--rebase" "--gpg-sign=5F6C0EA160557395"))))
+
+;; editor/evil
+;; (map! :n "C-h" 'evil-window-left
+;;       :n "C-j" 'evil-window-down
+;;       :n "C-k" 'evil-window-up
+;;       :n "C-l" 'evil-window-right
+;; 
+;;       ;; :m "M-j" '+default:multi-next-line
+;;       ;; :m "M-k" '+default:multi-previous-line
+;; 
+;;       (:map evil-treemacs-state-map
+;;         "C-h" 'evil-window-left
+;;         "C-l" 'evil-window-right))
+
+
+;; :tools/macos
+;; (when (eq system-type 'darwin) ;; macOS
+;;   (setq ns-use-thin-smoothing t)
+;;   ;; (mac-auto-operator-composition-mode)
+;;   (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
+;;   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+;;   (add-to-list 'default-frame-alist '(ns-appearance . dark))
+;;   (add-hook 'window-setup-hook #'toggle-frame-maximized))
+
+;; lang/org
+;; (setq org-dir "~/.org"
+;;       org-directory "~/.org/"
+;;       org-ellipsis " ▼ ")
+
+;; editor/flycheck
+;; (setq flycheck-checker-error-threshold 666)
+;; (mapc 'lsp-ui-flycheck-add-mode '(typescript-mode js-mode css-mode vue-html-mode))
+
+;; (defun flycheck-display-error-messages-truncated (errors)
+;;   (when (and errors (flycheck-may-use-echo-area-p))
+;;     (let ((messages (seq-map #'flycheck-error-format-message-and-id errors)))
+;;       (message (string-join messages "\n\n") ;; here is the relevant modification
+;;                flycheck-error-message-buffer)
+;;       ;; We cannot rely on `display-message-or-buffer' returning the right
+;;       ;; window. See URL `https://github.com/flycheck/flycheck/issues/1643'.
+;;       (-when-let ((buf (get-buffer flycheck-error-message-buffer)))
+;;         (with-current-buffer buf
+;;           (unless (derived-mode-p 'flycheck-error-message-mode)
+;;             (flycheck-error-message-mode)))))))
+
+;; (use-package flycheck
+;;   :ensure t
+;;   :init (global-flycheck-mode)
+;;   :config
+;;   (setq flycheck-check-syntax-automatically '(save))
+;;   (setq flycheck-display-errors-function #'flycheck-display-error-messages-truncated))
+
+;; lang/python
+;; https://github.com/hlissner/doom-emacs/issues/212 FIXME install pyenv?
+;; (when (and (executable-find "python3")
+;;              (string= python-shell-interpreter "python"))
+;;     (setq python-shell-interpreter "python3"))
+;; 
+;;   ;; Env vars
+;;   (with-eval-after-load 'exec-path-from-shell
+;;     (exec-path-from-shell-copy-env "PYTHONPATH"))
+
+;;;  lang/plantuml
+;; (org-babel-do-load-languages
+;;  'org-babel-load-languages
+;;  '((plantuml . t))) ;; Add Plant UML to Org
+
+
+;; NOTE Review upstream
+
+;; (defvar xdg-data (getenv "XDG_DATA_HOME"))
+;; (defvar xdg-bin (getenv "XDG_BIN_HOME"))
+;; (defvar xdg-cache (getenv "XDG_CACHE_HOME"))
+;; (defvar xdg-config (getenv "XDG_CONFIG_HOME"))
+
+
+;;     +workspaces-switch-project-function #'ignore
+
+
+;; (add-to-list 'org-modules 'org-habit t)
+
+
+;;     ;;
+;;     ;; Host-specific config
+
+;;     (when (equal (system-name) "triton")
+;;       ;; I've swapped these keys on my keyboard
+;;       (setq x-super-keysym 'meta
+;;             x-meta-keysym  'super))
+
+;;     (pcase (system-name)
+;;       ("halimede"
+;;        (setq doom-font (font-spec :family "Input Mono Narrow" :size 9)))
+;;       (_
+;;        (setq doom-font (font-spec :family "Input Mono Narrow" :size 12)
+;;              +modeline-height 25)))
+
+;;     ; (:when IS-LINUX
+;;     ;   "s-x" #'execute-extended-command
+;;     ;   "s-;" #'eval-expression
+;;     ;   ;; use super for window/frame navigation/manipulation
+;;     ;   "s-w" #'delete-window
+;;     ;   "s-W" #'delete-frame
+;;     ;   "s-n" #'+default/new-buffer
+;;     ;   "s-N" #'make-frame
+;;     ;   "s-q" (if (daemonp) #'delete-frame #'evil-quit-all)
+;;     ;   ;; Restore OS undo, save, copy, & paste keys (without cua-mode, because
+;;     ;   ;; it imposes some other functionality and overhead we don't need)
+;;     ;   "s-z" #'undo
+;;     ;   "s-c" (if (featurep 'evil) #'evil-yank #'copy-region-as-kill)
+;;     ;   "s-v" #'yank
+;;     ;   "s-s" #'save-buffer
+;;     ;   ;; Buffer-local font scaling
+;;     ;   "s-+" (λ! (text-scale-set 0))
+;;     ;   "s-=" #'text-scale-increase
+;;     ;   "s--" #'text-scale-decrease
+;;     ;   ;; Conventional text-editing keys
+;;     ;   "s-a" #'mark-whole-buffer
+;;     ;   :gi [s-return]    #'+default/newline-below
+;;     ;   :gi [s-S-return]  #'+default/newline-above
+;;     ;   :gi [s-backspace] #'doom/backward-kill-to-bol-and-indent)
+
+;;     ; :leader
+;;     ; (:prefix "f"
+;;     ;   :desc "Find file in dotfiles" "t" #'+hlissner/find-in-dotfiles
+;;     ;   :desc "Browse dotfiles"       "T" #'+hlissner/browse-dotfiles)
+;;     ; (:prefix "n"
+;;     ;   :desc "Open mode notes"       "m" #'+hlissner/find-notes-for-major-mode
+;;     ;   :desc "Open project notes"    "p" #'+hlissner/find-notes-for-project))
+
+
+;;     ; ;;
+;;     ; ;; Modules
+
+;;     ; ;; emacs/eshell
+;;     ; (after! eshell
+;;     ;   (set-eshell-alias!
+;;     ;    "f"   "find-file $1"
+;;     ;    "l"   "ls -lh"
+;;     ;    "d"   "dired $1"
+;;     ;    "gl"  "(call-interactively 'magit-log-current)"
+;;     ;    "gs"  "magit-status"
+;;     ;    "gc"  "magit-commit"))
+
+;;     ; ;;
+;;     ; ;; Custom
+
+;;     ; (def-project-mode! +javascript-screeps-mode
+;;     ;   :match "/screeps\\(?:-ai\\)?/.+$"
+;;     ;   :modes (+javascript-npm-mode)
+;;     ;   :add-hooks (+javascript|init-screeps-mode)
+;;     ;   :on-load (load! "lisp/screeps"))
+
+
