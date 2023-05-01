@@ -67,10 +67,10 @@
        format
        ;; +onsave  ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
-       lispy ; vim for lisp, for people who don't like vim
+       ;;lispy ; vim for lisp, for people who don't like vim
        ;;multiple-cursors  ; editing in many places at once
        ;;objed             ; text object editing for the innocent
-       ;;(parinfer +rust) turn lisp into python, sort of
+       (parinfer +rust) ;turn lisp into python, sort of
        ;;rotate-text       ; cycle region at point between text candidates
        snippets          ; my elves. They type so I don't have to
        word-wrap                      ; soft wrapping with language-aware indent
@@ -90,18 +90,18 @@
 
        :checkers
        syntax                 ; tasing you for every semicolon you forget
-       spell
-       ;;  +aspell)           ; tasing you for misspelling mispelling
+       (spell
+        +aspell)           ; tasing you for misspelling mispelling
        ;; grammar           ; tasing grammar mistake every you make
 
        :tools
        ;;ansible
        ;;biblio            ; Writes a PhD for you (citation needed)
        debugger                    ; stepping through code, to help you add bugs
-       ;;direnv
+       direnv
        docker
        editorconfig      ; let someone else argue about tabs vs spaces
-       ;;ein               ; tame Jupyter notebooks with emacs
+       ein               ; tame Jupyter notebooks with emacs
        eval
        ;; +overlay)            ; run code, run (also, repls)
        ;;gist              ; interacting with github gists
@@ -127,6 +127,7 @@
        ;;agda              ; types of types of types of types...
        ;;beancount         ; mind the GAAP
        (cc
+
         +lsp)            ; C > C++ == 1
        ;;clojure           ; java with a lisp
        common-lisp       ; if you've seen one lisp, you've seen them all

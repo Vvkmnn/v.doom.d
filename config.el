@@ -112,9 +112,10 @@
       doom-theme 'doom-city-lights)                 ;; Theme
 
 ;; fonts
-(setq doom-font (font-spec :family "MesloLGS NF" :size 13)
-    doom-unicode-font (font-spec :family "MesloLGS NF" :size 13)
-    doom-variable-pitch-font (font-spec :family "MesloLGS NF" :size 13))
+(setq doom-font (font-spec :family "MesloLGS NF" :size 12)
+      ;; doom-unicode-font (font-spec :family "MesloLGS NF" :size 13)
+      ;; doom-variable-pitch-font (font-spec :family "MesloLGS NF" :size 13)
+      )
 
 ;; Flymake
 ;; https://github.com/doomemacs/doomemacs/issues/2497
