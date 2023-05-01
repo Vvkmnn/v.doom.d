@@ -31,8 +31,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
-; (setq user-full-name "John Doe"
-;       user-mail-address "john@doe.com")
+                                        ; (setq user-full-name "John Doe"
+                                        ;       user-mail-address "john@doe.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -57,15 +57,15 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-; (setq doom-theme 'doom-one)
+                                        ; (setq doom-theme 'doom-one)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-; (setq display-line-numbers-type t)
+                                        ; (setq display-line-numbers-type t)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-; (setq org-directory "~/org/")
+                                        ; (setq org-directory "~/org/")
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
@@ -111,15 +111,63 @@
       menu-bar-mode t                               ;; For Yabai WM NOTE https://github.com/koekeishiya/yabai/issues/86#issuecomment-507934212
       doom-theme 'doom-city-lights)                 ;; Theme
 
+;; fonts
+(setq doom-font (font-spec :family "MesloLGS NF" :size 13)
+    doom-unicode-font (font-spec :family "MesloLGS NF" :size 13)
+    doom-variable-pitch-font (font-spec :family "MesloLGS NF" :size 13))
+
 ;; Flymake
 ;; https://github.com/doomemacs/doomemacs/issues/2497
- ;; (setq next-error-find-buffer-function 'next-error-buffer-unnavigated-current))
+;; (setq next-error-find-buffer-function 'next-error-buffer-unnavigated-current))
+
+
+
+;; format
+;; web/prettier
+;; (setq-hook! 'web-mode-hook +format-with 'prettier-prettify)
+;; (setq-hook! 'web-mode-hook +format-with-lsp 'prettier-prettify)
+;; (add-hook 'web-mode-hook 'prettier-mode)
+;;
+;; (setq-hook! 'web-mode-hook +format-with 'prettier-prettify)
+;; (setq-hook! 'css-mode-hook +format-with 'prettier-prettify)
+
+;; (setq-hook! 'web-mode-hook +format-with-lsp 'prettier-prettify)
+;; (setq-hook! 'css-mode-hook +format-with-lsp 'prettier-prettify)
+
+;; (add-hook 'web-mode-hook 'prettier-mode)
+;; (add-hook 'css-mode-hook 'prettier-mode)
+
+;; (setq-hook! 'web-mode-hook +format-with 'prettier)
+;; (setq-hook! 'css-mode-hook +format-with 'prettier)
+
+;; (setq-hook! 'web-mode-hook +format-with 'prettier-prettify)
+;; (setq-hook! 'css-mode-hook +format-with 'prettier-prettify)
+
+;; (setq-hook! 'js2-jsx-mode-hook +format-with 'standard)
+;; (setq-hook! 'js-jsx-mode-hook +format-with 'standard)
+;; (setq-hook! 'rjsx-mode-hook +format-with 'standard)
+;; (setq-hook! 'js-mode-hook +format-with 'standard)
+
+;; does nothing anymore
+;; (setq-hook! 'web-mode-hook +format-with 'prettier-prettify)
 
 ;; LSP
-;; Not formatting web mode
-;; (setq-hook! 'web-mode-hook +format-with 'prettier-prettify)
+;; Not formatting web mode with +format since lsp support - install prettier to replace tidy
+;; (after! lsp
+;;   (setq-hook! 'web-mode-hook +format-with-lsp 'prettier-prettify)
+;;   (setq-hook! 'web-mode-hook +format-with 'prettier-prettify))
+
 ;; prevent so-long-mode from hijacking .ejs
 ;; (setq so-long-file-local-mode-function 'so-long-inhibit)
+;; up threshold to prevent being called
+;; (global-so-long-mode 0)
+
+;; so-long
+;; basically disable from starting
+(after! so-long
+  (setq! so-long-threshold 1000000))
+
+
 
 ;; Copilot
 ;; accept completion from copilot and fallback to company
@@ -138,27 +186,27 @@
 ;;     doom-variable-pitch-font (font-spec :family "Iosevka" :size 13))
 
 ;; Fira
-; (setq doom-font (font-spec :family "Fira Code" :size 13)
-;      doom-unicode-font (font-spec :family "Fira Mono" :size 13)
-;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+                                        ; (setq doom-font (font-spec :family "Fira Code" :size 13)
+                                        ;      doom-unicode-font (font-spec :family "Fira Mono" :size 13)
+                                        ;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 
 ;; Package Lists
-; (add-to-list 'package-archives
-;              '("melpa" . "http://melpa.org/packages/") t)
-; (add-to-list 'package-archives
-;              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-; (add-to-list 'package-archives
-;          '("marmalade" . "https://marmalade-repo.org/packages/") t)
-; (add-to-list 'package-archives
-;              '("gnu elpa" . "https://elpa.gnu.org/packages/") t)
+                                        ; (add-to-list 'package-archives
+                                        ;              '("melpa" . "http://melpa.org/packages/") t)
+                                        ; (add-to-list 'package-archives
+                                        ;              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+                                        ; (add-to-list 'package-archives
+                                        ;          '("marmalade" . "https://marmalade-repo.org/packages/") t)
+                                        ; (add-to-list 'package-archives
+                                        ;              '("gnu elpa" . "https://elpa.gnu.org/packages/") t)
 
-; Certificates
-; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+                                        ; Certificates
+                                        ; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
-; Dictionary
+                                        ; Dictionary
 
-; (setq ispell-program-name "aspell"
-;       ispell-silently-savep t)
+                                        ; (setq ispell-program-name "aspell"
+                                        ;       ispell-silently-savep t)
 
 ;; tools/lsp
 ;; (setq lsp-enable-file-watchers nil)
@@ -185,7 +233,7 @@
 ;;   )
 
 ;; app/rss
-; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))
+                                        ; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))
 
 ;; tools/magit
 ;; (setq magit-save-repository-buffers nil)
@@ -199,10 +247,10 @@
 ;;       :n "C-j" 'evil-window-down
 ;;       :n "C-k" 'evil-window-up
 ;;       :n "C-l" 'evil-window-right
-;; 
+;;
 ;;       ;; :m "M-j" '+default:multi-next-line
 ;;       ;; :m "M-k" '+default:multi-previous-line
-;; 
+;;
 ;;       (:map evil-treemacs-state-map
 ;;         "C-h" 'evil-window-left
 ;;         "C-l" 'evil-window-right))
@@ -223,6 +271,24 @@
 ;;       org-ellipsis " ▼ ")
 
 ;; editor/flycheck
+;; https://emacs.stackexchange.com/questions/58153/why-does-flycheck-open-a-new-buffer-for-error-messages
+(after! flycheck
+  (defun flycheck-display-error-messages-truncated (errors)
+    (when (and errors (flycheck-may-use-echo-area-p))
+      (let ((messages (seq-map #'flycheck-error-format-message-and-id errors)))
+        (message (string-join messages "\n\n") ;; here is the relevant modification
+                 flycheck-error-message-buffer)
+        ;; We cannot rely on `display-message-or-buffer' returning the right
+        ;; window. See URL `https://github.com/flycheck/flycheck/issues/1643'.
+        (-when-let ((buf (get-buffer flycheck-error-message-buffer)))
+          (with-current-buffer buf
+            (unless (derived-mode-p 'flycheck-error-message-mode)
+              (flycheck-error-message-mode)))))))
+
+  (setq flycheck-check-syntax-automatically '(save))
+  (setq flycheck-display-errors-function #'flycheck-display-error-messages-truncated)
+  )
+
 ;; (setq flycheck-checker-error-threshold 666)
 ;; (mapc 'lsp-ui-flycheck-add-mode '(typescript-mode js-mode css-mode vue-html-mode))
 
@@ -250,7 +316,7 @@
 ;; (when (and (executable-find "python3")
 ;;              (string= python-shell-interpreter "python"))
 ;;     (setq python-shell-interpreter "python3"))
-;; 
+;;
 ;;   ;; Env vars
 ;;   (with-eval-after-load 'exec-path-from-shell
 ;;     (exec-path-from-shell-copy-env "PYTHONPATH"))
@@ -345,5 +411,3 @@
 ;;     ;   :modes (+javascript-npm-mode)
 ;;     ;   :add-hooks (+javascript|init-screeps-mode)
 ;;     ;   :on-load (load! "lisp/screeps"))
-
-

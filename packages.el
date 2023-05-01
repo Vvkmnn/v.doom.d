@@ -69,3 +69,13 @@
 ;         lsp-signature-render-documentation nil
 ;         lsp-enable-symbol-highlighting nil
 ;         lsp-headerline-breadcrumb-enable nil))
+
+;; (use-package! so-long
+;;   ;; Need to repeat this line from the Doom lsp module
+;;   ;; declaration to keep it from eager-loading:
+;;   ;; :commands lsp-install-server
+
+;;   :config
+;;   (global-so-long-mode -1))
+
+(package! prettier)
