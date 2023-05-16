@@ -106,16 +106,17 @@
  user-mail-address "v+emacs@vvkmnn.xyz")
 
 ;; editor
-(setq frame-title-format '("vDoom Emacs | %m | %b") ;; Title
+(setq frame-title-format '("vDoom Emacs | %b") ;; Title
+ ;; frame-title-format '("vDoom Emacs | %m | %b") ;; Title
       ;; doom-private-dir "~/.v.doom.d/"               ;; Private Dir
       menu-bar-mode t                               ;; For Yabai WM NOTE https://github.com/koekeishiya/yabai/issues/86#issuecomment-507934212
       doom-theme 'doom-city-lights)                 ;; Theme
 
 ;; fonts
-(setq doom-font (font-spec :family "MesloLGS NF" :size 12)
+(setq doom-font (font-spec :family "MesloLGS NF" :size 12))
       ;; doom-unicode-font (font-spec :family "MesloLGS NF" :size 13)
       ;; doom-variable-pitch-font (font-spec :family "MesloLGS NF" :size 13)
-      )
+ 
 
 ;; Flymake
 ;; https://github.com/doomemacs/doomemacs/issues/2497
@@ -165,8 +166,8 @@
 
 ;; so-long
 ;; basically disable from starting
-(after! so-long
-  (setq! so-long-threshold 1000000))
+;; (after! so-long
+;;   (setq! so-long-threshold 1000000))
 
 
 
@@ -287,8 +288,8 @@
               (flycheck-error-message-mode)))))))
 
   (setq flycheck-check-syntax-automatically '(save))
-  (setq flycheck-display-errors-function #'flycheck-display-error-messages-truncated)
-  )
+  (setq flycheck-display-errors-function #'flycheck-display-error-messages-truncated))
+  
 
 ;; (setq flycheck-checker-error-threshold 666)
 ;; (mapc 'lsp-ui-flycheck-add-mode '(typescript-mode js-mode css-mode vue-html-mode))
